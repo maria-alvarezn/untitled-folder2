@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20240513/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/" xmlns:kie="https://kie.org/dmn/extensions/1.0" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_Bonos" name="BonosTrabajadores" namespace="http://example.com/dmn/bonos">
+  <decision id="decisionBono" name="Calcular Bono">
+    <variable id="_24733497-96A6-4A6F-8531-BCA7DCD8472C" name="Calcular Bono" typeRef="string" />
+    <informationRequirement id="_7547F3C0-C1FD-47DD-BB2D-73BF443BE787">
+      <requiredInput href="#_40B08044-A2C7-4A57-8A0C-92869983D5F0" />
+    </informationRequirement>
+    <informationRequirement id="_3D5CA9AF-1F0A-4D1D-B606-F2C14D074648">
+      <requiredInput href="#_0C039735-9A80-49DA-BBDA-C102BF707212" />
+    </informationRequirement>
+    <informationRequirement id="_13A560ED-BB74-46DB-9875-6E862693E101">
+      <requiredInput href="#_34E1B86C-852E-4346-AEB4-84B1263FAE8B" />
+    </informationRequirement>
+    <decisionTable id="tablaBonos" hitPolicy="FIRST" typeRef="string">
+      <input id="input1">
+        <inputExpression typeRef="string" id="_8BFA55F4-E89D-4F9E-9FC8-2D0E53B5563D">
+          <text>tipoContrato</text>
+        </inputExpression>
+      </input>
+      <input id="input2">
+        <inputExpression typeRef="number" id="_11B15C99-918C-4EA4-AF46-51B4610EC595">
+          <text>diasTrabajados</text>
+        </inputExpression>
+      </input>
+      <input id="input3">
+        <inputExpression typeRef="number" id="_97B8188F-4ED3-444C-9EBB-C7DB2925ED77">
+          <text>horasSemanales</text>
+        </inputExpression>
+      </input>
+      <output id="output1" name="categoriaBono" typeRef="string" />
+      <output id="output2" name="porcentajeBono" typeRef="number" />
+      <output id="output3" name="mensaje" typeRef="string" />
+      <rule id="_9B76A482-8E37-4299-86EA-E5A9DF0F0F8E">
+        <inputEntry id="_A95D97C1-AA5A-46A6-A4C3-4F4BF7708F52">
+          <text>&quot;TEMPORADA&quot;</text>
+        </inputEntry>
+        <inputEntry id="_2DD82462-ABD2-4861-9EF0-343E121C5C27">
+          <text>&gt;= 90</text>
+        </inputEntry>
+        <inputEntry id="_D14427BA-3104-4133-8666-BAD9A45A82E5">
+          <text>&gt;= 40</text>
+        </inputEntry>
+        <outputEntry id="_645631E3-C226-4CE1-BEB0-5BEF33231F09">
+          <text>&quot;A&quot;</text>
+        </outputEntry>
+        <outputEntry id="_CF548199-D51F-4747-AE91-1414CA3CEFB7">
+          <text>15.0</text>
+        </outputEntry>
+        <outputEntry id="_1FBCBEBC-5AB7-457F-B704-BF88E105E3F1">
+          <text>&quot;Bono temporada alta completo: 15%&quot;</text>
+        </outputEntry>
+      </rule>
+      <rule id="_F324E522-856C-45FF-AD2A-D9577D6DE55F">
+        <inputEntry id="_EE806B58-C6FF-4312-82BC-5A40EBE008BB">
+          <text>&quot;TEMPORADA&quot;</text>
+        </inputEntry>
+        <inputEntry id="_A29A2EAB-F9B8-4B70-87AC-C6C22D20DAD3">
+          <text>[60..89]</text>
+        </inputEntry>
+        <inputEntry id="_1CD5B52A-35F7-462B-9BCB-8577D26EF8E1">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_0E4B7A1D-D411-470F-865F-3C4B0A05ED95">
+          <text>&quot;B&quot;</text>
+        </outputEntry>
+        <outputEntry id="_F6F34DC9-95E5-4EB8-AC33-645A869BC14A">
+          <text>8.0</text>
+        </outputEntry>
+        <outputEntry id="_8F29570F-70D1-46FB-8F39-3170EAE44D09">
+          <text>&quot;Bono temporada alta parcial: 8%&quot;</text>
+        </outputEntry>
+      </rule>
+      <rule id="_5D7E0A7A-AA14-4144-A488-205FE0C06AF3">
+        <inputEntry id="_3D8E355A-D1D3-41B8-891E-5B523F60B3EE">
+          <text>&quot;INDEFINIDO&quot;</text>
+        </inputEntry>
+        <inputEntry id="_13046D5D-6709-495E-94C2-FE55A1365A7E">
+          <text>&gt;= 180</text>
+        </inputEntry>
+        <inputEntry id="_0E018979-0483-4BC4-8A70-415CB9324DCD">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_8C0C8BD8-78ED-47BC-9764-083620CA1EA6">
+          <text>&quot;C&quot;</text>
+        </outputEntry>
+        <outputEntry id="_CABF9E61-408E-4DF3-B15A-8BA9107A21AB">
+          <text>5.0</text>
+        </outputEntry>
+        <outputEntry id="_E57F0921-3642-4B6D-A528-6FF85157A00E">
+          <text>&quot;Bono permanencia contrato indefinido: 5%&quot;</text>
+        </outputEntry>
+      </rule>
+      <rule id="_5F44FC59-195E-41BE-99D1-8458B0F34AEB">
+        <inputEntry id="_F579C89B-5840-4E0F-B471-508C1C41EE43">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_0C225D14-503C-44DF-B8F5-3A5DC36973BF">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="_6E0C88D5-F1B6-44AC-AA90-1F1EE2B6369C">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="_C54186A5-0577-4D69-ABA5-BCBE7462291C">
+          <text>&quot;SIN_BONO&quot;</text>
+        </outputEntry>
+        <outputEntry id="_087FCAB2-468D-448A-BC0B-EBB98197243B">
+          <text>0.0</text>
+        </outputEntry>
+        <outputEntry id="_45EE3134-9000-4A5A-BF01-A242C4203F15">
+          <text>&quot;No cumple criterios para bono en este período&quot;</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData name="tipoContrato" id="_40B08044-A2C7-4A57-8A0C-92869983D5F0">
+    <variable name="tipoContrato" id="_CEFF0751-45E7-4D50-AE57-B735595CCB5D" typeRef="string" />
+  </inputData>
+  <inputData name="diasTrabajados" id="_0C039735-9A80-49DA-BBDA-C102BF707212">
+    <variable name="diasTrabajados" id="_0F941735-F743-48D2-A1A0-4B488A74F29F" typeRef="number" />
+  </inputData>
+  <inputData name="horasSemanales" id="_34E1B86C-852E-4346-AEB4-84B1263FAE8B">
+    <variable name="horasSemanales" id="_3518AE00-C07C-4552-9522-AFEC7312E30B" typeRef="number" />
+  </inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_30008195-87AC-4749-B664-2927973B2F76" name="Default DRD" useAlternativeInputDataShape="false">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="tablaBonos">
+            <kie:width>100</kie:width>
+            <kie:width>123</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>395</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="_FB200B21-88F2-47AC-BCE6-81FA24EDBC97" dmnElementRef="decisionBono">
+        <dc:Bounds x="240" y="320" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_6D5A3DE0-6850-43B1-A090-19B447C48F47" dmnElementRef="_40B08044-A2C7-4A57-8A0C-92869983D5F0" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="80" y="140" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_B0DFA489-E0B9-4896-B37A-2CEC0BD95206" dmnElementRef="_0C039735-9A80-49DA-BBDA-C102BF707212" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="240" y="140" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="_8BA24B53-F0DD-45E5-BF45-1505187E4238" dmnElementRef="_34E1B86C-852E-4346-AEB4-84B1263FAE8B" isCollapsed="false" isListedInputData="false">
+        <dc:Bounds x="400" y="140" width="160" height="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="_24B4E63D-8DF0-4728-9817-2AE1CBF1661D" dmnElementRef="_7547F3C0-C1FD-47DD-BB2D-73BF443BE787" sourceElement="_6D5A3DE0-6850-43B1-A090-19B447C48F47" targetElement="_FB200B21-88F2-47AC-BCE6-81FA24EDBC97">
+        <di:waypoint x="160" y="180" />
+        <di:waypoint x="320" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_547FDCA6-7BA3-4438-BE66-1DDE12DFF29D" dmnElementRef="_3D5CA9AF-1F0A-4D1D-B606-F2C14D074648" sourceElement="_B0DFA489-E0B9-4896-B37A-2CEC0BD95206" targetElement="_FB200B21-88F2-47AC-BCE6-81FA24EDBC97">
+        <di:waypoint x="320" y="180" />
+        <di:waypoint x="320" y="320" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="_7085A939-426E-46B1-9320-2B2C87C632B6" dmnElementRef="_13A560ED-BB74-46DB-9875-6E862693E101" sourceElement="_8BA24B53-F0DD-45E5-BF45-1505187E4238" targetElement="_FB200B21-88F2-47AC-BCE6-81FA24EDBC97">
+        <di:waypoint x="480" y="180" />
+        <di:waypoint x="320" y="320" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
